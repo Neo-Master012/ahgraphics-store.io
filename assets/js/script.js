@@ -374,7 +374,7 @@
 
     $(document).off("click.headerLogout").on("click.headerLogout", "[data-header-logout]", function () {
       saveStoredAuthSession(null);
-      window.location.href = "index.html";
+      window.location.href = "/";
     });
   }
 
