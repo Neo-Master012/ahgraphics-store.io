@@ -69,10 +69,11 @@
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     padding: 24px 15px;
-    height: auto;
+    height: 100%; /* Force equal heights */
+    min-height: 220px;
 }
 
 .tt-product-card:hover {
@@ -86,18 +87,23 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    height: 100%;
 }
 
 .tt-card-icon {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     overflow: hidden;
     margin-bottom: 15px;
-    background: #f1f5f9;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
-    border: 2px solid #fff;
+    background: #ffffff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08); /* Better pop */
+    border: 2px solid #f1f5f9;
     transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px; /* Creates spacing from the border */
 }
 
 .tt-product-card:hover .tt-card-icon {
@@ -107,13 +113,16 @@
 .tt-card-icon img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain; /* Keep logo proportions generic */
+    border-radius: 50%;
 }
 
 .tt-card-content {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
+    flex-grow: 1; /* Pushes price to the bottom if titles vary */
+    justify-content: space-between;
 }
 
 .tt-card-title {
