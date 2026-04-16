@@ -3,74 +3,98 @@ document.addEventListener("DOMContentLoaded", function() {
     const products = [
         {
             id: 1,
-            title: "NeuroEngine AI Core",
-            longDesc: "NeuroEngine AI Core revolutionizes how you process big data. With out-of-the-box support for advanced neural networks and deep learning models, it accelerates your data science workflow. Perfect for rapid prototyping and enterprise scaling.",
-            price: "$499.00",
-            image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=400&q=80",
+            title: "ChatGPT Plus Shared",
+            longDesc: "Affordable shared ChatGPT Plus plan for writing, research, and everyday productivity. Includes access to GPT-4 and advanced prompt support.",
+            price: "PKR 500",
+            image: "https://www.google.com/s2/favicons?domain=chatgpt.com&sz=128",
             features: [
-                "Auto-scaling ML pipelines",
-                "Advanced NLP processing",
-                "Real-time visualization"
+                "Shared Plus access",
+                "Advanced AI prompts",
+                "Best low-cost entry plan"
             ]
         },
         {
             id: 2,
-            title: "PixelForge Studio X",
-            longDesc: "Push the boundaries of digital art with PixelForge Studio X. Offering seamless integration between vector tools and high-res raster brushes. Experience zero-lag performance even with thousands of layers.",
-            price: "$299.00",
-            image: "https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=400&q=80",
+            title: "CapCut Pro Monthly",
+            longDesc: "CapCut Pro subscription for premium templates, video effects, and faster content editing. Ideal for short-form creators.",
+            price: "PKR 600",
+            image: "https://www.google.com/s2/favicons?domain=capcut.com&sz=128",
             features: [
-                "Infinite canvas tech",
-                "AI-assisted generation",
-                "Cloud-synced workspace"
+                "Monthly Pro access",
+                "Premium video templates",
+                "Affordable creator plan"
             ]
         },
         {
             id: 3,
-            title: "StreamNova Pro",
-            longDesc: "Broadcast-quality video rendering and distribution platform. Low latency encoding and dynamic overlays.",
-            price: "$149.00",
-            image: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=400&q=80",
+            title: "Canva Pro 1 Year",
+            longDesc: "One-year Canva Pro access for flawless social posts, branding, and content design. Includes premium assets and background remover.",
+            price: "PKR 250",
+            image: "https://www.google.com/s2/favicons?domain=canva.com&sz=128",
             features: [
-                "4K 60FPS streaming",
-                "Multi-destination casting",
-                "Real-time analytics"
+                "1 year validity",
+                "Premium design elements",
+                "Excellent budget value"
             ]
         },
         {
             id: 4,
-            title: "CodeFlow Optimizer",
-            longDesc: "Eliminate technical debt instantly. Detects memory leaks, unoptimized loops, and anti-patterns automatically.",
-            price: "$89.00",
-            image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=400&q=80",
+            title: "Midjourney Private",
+            longDesc: "Standard Midjourney access for premium image creation, art concepts, and high-res generative designs.",
+            price: "PKR 2500",
+            image: "https://www.google.com/s2/favicons?domain=midjourney.com&sz=128",
             features: [
-                "20+ programming languages",
-                "CI/CD integration",
-                "Automated patching"
+                "Standard plan access",
+                "High-res AI generation",
+                "Great for creatives and ads"
             ]
         },
         {
             id: 5,
-            title: "DataSphere Plus",
-            longDesc: "Centralized big data analytics and dashboard manager. Highly customizable report building.",
-            price: "$250.00",
-            image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&q=80",
+            title: "Netflix Private",
+            longDesc: "Private Netflix plan for users who want dedicated and uninterrupted premium streaming access in Ultra HD.",
+            price: "PKR 2000",
+            image: "https://www.google.com/s2/favicons?domain=netflix.com&sz=128",
             features: [
-                "Centralized API",
-                "Custom report building",
-                "1-click integrations"
+                "Private account setup",
+                "Premium UHD streaming",
+                "Best for personal use"
             ]
         },
         {
             id: 6,
-            title: "CloudSync Engine",
-            longDesc: "Next generation cloud storage solution for secure, decentralized object storage.",
-            price: "$50.00",
-            image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=400&q=80",
+            title: "Grammarly Premium",
+            longDesc: "Premium grammar and writing suggestions for polished personal and business content. Plagiarism detection included.",
+            price: "PKR 450",
+            image: "https://www.google.com/s2/favicons?domain=grammarly.com&sz=128",
             features: [
-                "Decentralized storage",
-                "Object API access",
-                "Unlimited bandwidth"
+                "Grammar and tone fixes",
+                "Premium writing checks",
+                "Affordable monthly option"
+            ]
+        },
+        {
+            id: 7,
+            title: "Envato Elements",
+            longDesc: "Direct login Envato plan for access to thousands of WordPress themes, templates, graphics, and video assets.",
+            price: "PKR 1800",
+            image: "https://www.google.com/s2/favicons?domain=envato.com&sz=128",
+            features: [
+                "Direct login access",
+                "Premium design resources",
+                "Clean workflow access"
+            ]
+        },
+        {
+            id: 8,
+            title: "MS Office 365 Yearly",
+            longDesc: "Yearly Office 365 plan for documents, spreadsheets, presentations, and reliable daily office work across devices.",
+            price: "PKR 2500",
+            image: "https://www.google.com/s2/favicons?domain=microsoft.com&sz=128",
+            features: [
+                "Yearly Office access",
+                "Word, Excel, PowerPoint",
+                "Strong productivity bundle"
             ]
         }
     ];
@@ -87,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function() {
         card.innerHTML = `
             <div class="tt-card-inner">
                 <div class="tt-card-icon">
-                    <img src="${product.image}" loading="lazy" alt="${product.title}">
+                    <img src="${product.image}" loading="lazy" alt="${product.title} logo">
                 </div>
                 <div class="tt-card-content">
                     <h3 class="tt-card-title">${product.title}</h3>
