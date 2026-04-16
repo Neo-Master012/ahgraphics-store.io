@@ -1,4 +1,4 @@
-// --- Trending Tools Component Logic ---
+// --- Trending Tools Carousel Component Logic ---
 document.addEventListener("DOMContentLoaded", function() {
     const products = [
         {
@@ -44,24 +44,25 @@ document.addEventListener("DOMContentLoaded", function() {
     // Render Cards in Swiper Wrapper
     products.forEach(product => {
         const card = document.createElement('div');
-        card.className = 'tt-product-card swiper-slide';
+        card.className = 'tt-card-inner swiper-slide'; // Treat inner container directly as the slide 
+
+        const whatsappMessage = encodeURIComponent(`Hi! I'm interested in ${product.title}`);
+        const checkoutUrl = `https://wa.me/923268600994?text=${whatsappMessage}`;
 
         card.innerHTML = `
-            <div class="tt-card-inner">
-                <div class="tt-card-top">
-                    <div class="tt-card-icon">
-                        <img src="${product.image}" loading="lazy" alt="${product.title} logo">
-                    </div>
-                    <div class="tt-card-badges">
-                        <span class="tt-card-orders"><i class="fa fa-shopping-cart"></i> ${product.orders} Sold</span>
-                    </div>
+            <div class="tt-card-top">
+                <div class="tt-card-icon">
+                    <img src="${product.image}" loading="lazy" alt="${product.title} logo">
                 </div>
-                <div class="tt-card-content">
-                    <h3 class="tt-card-title">${product.title}</h3>
-                    <div class="tt-card-price-action">
-                        <span class="tt-card-price">${product.price}</span>
-                        <a href="https://wa.me/923268600994?text=Hi!%20I'm%20interested%20in%20${encodeURIComponent(product.title)}." target="_blank" class="tt-card-btn thm-btn thm-btn-two">Buy Now</a>
-                    </div>
+                <div class="tt-card-badges">
+                    <span class="tt-card-orders"><i class="fas fa-shopping-cart"></i> ${product.orders} Sold</span>
+                </div>
+            </div>
+            <div class="tt-card-content">
+                <h3 class="tt-card-title">${product.title}</h3>
+                <div class="tt-card-price-action">
+                    <span class="tt-card-price">${product.price}</span>
+                    <a href="${checkoutUrl}" target="_blank" class="tt-card-btn thm-btn thm-btn-two">Buy Now</a>
                 </div>
             </div>
         `;

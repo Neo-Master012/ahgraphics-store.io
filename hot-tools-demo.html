@@ -4,37 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trending Tools - Showcase</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Template Styles for theme buttons if needed -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
     <style>
         :root {
             --bg-color: #f8fafc;
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            --primary: #3b82f6;
-            --primary-hover: #2563eb;
-            --accent-gradient: linear-gradient(135deg, #ff416c, #ff4b2b);
-            --card-bg: #ffffff;
-            --modal-overlay: rgba(15, 23, 42, 0.6);
-            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            --shadow-glow: 0 0 20px rgba(255, 75, 43, 0.4);
-            --radius-md: 12px;
-            --radius-lg: 20px;
-            --font-main: 'Inter', sans-serif;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
         }
 
         body {
-            font-family: var(--font-main);
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
+            margin: 0;
             padding: 40px 20px;
         }
 
@@ -42,6 +26,7 @@
         .showcase-section {
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
         }
 
         .section-header {
@@ -50,353 +35,161 @@
         }
 
         .section-header h2 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 800;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
+            color: #061C3D;
+            margin-bottom: 12px;
         }
 
         .section-header p {
-            color: var(--text-muted);
+            color: #666;
             font-size: 1.1rem;
         }
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
         }
 
-        /* --- Product Cards --- */
-        .product-card {
-            background-color: var(--card-bg);
-            border-radius: var(--radius-md);
-            border: 1px solid rgba(0,0,0,0.05);
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: var(--shadow-lg), var(--shadow-glow);
-            border-color: transparent;
-        }
-
-        .card-image-wrapper {
-            position: relative;
-            width: 100%;
-            height: 220px;
-            overflow: hidden;
-            background: #e2e8f0;
-        }
-
-        .card-image-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .product-card:hover .card-image-wrapper img {
-            transform: scale(1.05);
-        }
-
-        .badge-hot {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--accent-gradient);
-            color: white;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 6px 12px;
-            border-radius: 20px;
-            box-shadow: 0 4px 10px rgba(255, 75, 43, 0.3);
-            z-index: 2;
-        }
-
-        .card-content {
+        /* --- Custom Dark Neon Cards for Trending Tools --- */
+        .tt-product-card {
+            background: linear-gradient(145deg, #1f1f23 0%, #151518 100%);
+            border-radius: 16px;
             padding: 24px;
             display: flex;
             flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--text-main);
-        }
-
-        .card-description {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
+            justify-content: space-between;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            text-decoration: none;
             overflow: hidden;
+            z-index: 1;
         }
-        
-        .card-footer {
-            margin-top: auto;
+
+        /* Neon glow effect on hover */
+        .tt-product-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #FF3838, transparent 40%, transparent 60%, #FF3838);
+            z-index: -1;
+            border-radius: 18px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .tt-product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(255, 56, 56, 0.2);
+        }
+
+        .tt-product-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Top Section: Icon & Orders Badge */
+        .tt-card-top {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
+            margin-bottom: 24px;
         }
 
-        .card-price {
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: var(--text-main);
-        }
-
-        .card-action {
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: color 0.2s;
-        }
-
-        .product-card:hover .card-action {
-            color: var(--primary-hover);
-        }
-
-        /* --- Modal Backdrop --- */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: var(--modal-overlay);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: 1000;
+        .tt-card-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            visibility: hidden;
+            box-shadow: inset 0 2px 10px rgba(255,255,255,0.03);
+            flex-shrink: 0;
+        }
+
+        .tt-card-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+        }
+
+        .tt-card-orders {
+            background: rgba(255, 56, 56, 0.15);
+            color: #FF3838;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid rgba(255, 56, 56, 0.3);
+            white-space: nowrap;
+        }
+
+        /* Content */
+        .tt-card-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .tt-card-title {
+            font-size: 1.25rem;
+            color: #fff;
+            margin: 0 0 16px 0;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .tt-card-price-action {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: auto;
+        }
+
+        .tt-card-price {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        /* Buy Action Container */
+        .tt-buy-now-wrapper {
+            margin-top: 5px;
+        }
+
+        /* Ensure it picks up theme styling, fallback included */
+        .thm-btn.tt-btn-custom {
+            width: 100%;
+            text-align: center;
+            display: block;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-sizing: border-box;
+            background-color: #FF3838;
+            color: #fff;
+            border: none;
             transition: all 0.3s ease;
         }
 
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* --- Modal Container --- */
-        .modal-container {
-            background: var(--card-bg);
-            width: 90%;
-            max-width: 900px;
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            display: flex;
-            flex-direction: row;
-            transform: scale(0.95) translateY(20px);
-            opacity: 0;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            max-height: 90vh;
-        }
-
-        .modal-overlay.active .modal-container {
-            transform: scale(1) translateY(0);
-            opacity: 1;
-        }
-
-        .modal-image-col {
-            flex: 1;
-            background: #f1f5f9;
-            position: relative;
-            min-height: 300px;
-        }
-
-        .modal-image-col img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-        .modal-content-col {
-            flex: 1;
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
-            position: relative;
-        }
-
-        .modal-close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(0,0,0,0.05);
-            border: none;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s;
-            z-index: 10;
-        }
-
-        .modal-close-btn:hover {
-            background: rgba(0,0,0,0.1);
-        }
-
-        .modal-close-btn svg {
-            width: 18px;
-            height: 18px;
-            fill: var(--text-main);
-        }
-
-        .modal-title {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-            color: var(--text-main);
-            padding-right: 30px;
-        }
-
-        .modal-price {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-
-        .modal-desc {
-            color: var(--text-muted);
-            margin-bottom: 25px;
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        .modal-features {
-            margin-bottom: 30px;
-            list-style: none;
-        }
-
-        .modal-features li {
-            position: relative;
-            padding-left: 28px;
-            margin-bottom: 12px;
-            color: var(--text-main);
-            font-weight: 500;
-        }
-
-        .modal-features li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            top: 0;
-            color: #10b981;
-            font-weight: 900;
-            font-size: 1.1rem;
-        }
-
-        .modal-actions {
-            margin-top: auto;
-            display: flex;
-            gap: 15px;
-        }
-
-        .btn {
-            padding: 14px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border: none;
-            font-family: var(--font-main);
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            flex: 2;
-            box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.39);
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
-        }
-
-        .btn-secondary {
-            background: #e2e8f0;
-            color: var(--text-main);
-            flex: 1;
-        }
-
-        .btn-secondary:hover {
-            background: #cbd5e1;
-        }
-
-        /* --- Mobile Responsive (Bottom Sheet Modal) --- */
-        @media (max-width: 768px) {
-            .product-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .modal-container {
-                flex-direction: column;
-                width: 100%;
-                max-width: none;
-                margin-top: auto;
-                border-radius: 24px 24px 0 0;
-                transform: translateY(100%);
-                max-height: 85vh;
-            }
-
-            .modal-overlay.active .modal-container {
-                transform: translateY(0);
-            }
-
-            .modal-image-col {
-                min-height: 220px;
-                flex: none;
-            }
-
-            .modal-content-col {
-                padding: 25px;
-            }
-
-            .modal-title {
-                font-size: 1.6rem;
-            }
-
-            .modal-actions {
-                flex-direction: column;
-            }
+        .thm-btn.tt-btn-custom:hover {
+            background-color: #061C3D;
+            color: #fff;
         }
     </style>
 </head>
@@ -404,182 +197,84 @@
 
     <section class="showcase-section">
         <div class="section-header">
-            <h2>🔥 Trending Tools</h2>
-            <p>Our most popular solutions trusted by professionals.</p>
+            <h2>🔥 Most Selling Tools</h2>
+            <p>Our top-rated premium digital subscriptions chosen by professionals.</p>
         </div>
 
         <div class="product-grid" id="productGrid">
-            <!-- Cards will be injected by JavaScript -->
+            <!-- Cards Injected via JS -->
         </div>
     </section>
 
-    <!-- Modal Markup -->
-    <div class="modal-overlay" id="productModal">
-        <div class="modal-container">
-            <div class="modal-image-col">
-                <img id="modalImg" src="" alt="Product Cover">
-            </div>
-            <div class="modal-content-col">
-                <button class="modal-close-btn" id="closeModal" aria-label="Close modal">
-                    <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                </button>
-                <h3 class="modal-title" id="modalTitle">Product Title</h3>
-                <div class="modal-price" id="modalPrice">$0.00</div>
-                <p class="modal-desc" id="modalDesc">Detailed product description goes here.</p>
-                <ul class="modal-features" id="modalFeatures">
-                    <!-- Features injected via JS -->
-                </ul>
-                <div class="modal-actions">
-                    <button class="btn btn-primary" onclick="alert('Added to cart!')">Add to Cart</button>
-                    <button class="btn btn-secondary" id="cancelModal">Later</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        // --- 1. Product Data (Simulated Database) ---
+        // Use EXACT required tools and stats 
         const products = [
             {
                 id: 1,
-                title: "NeuroEngine AI Core",
-                shortDesc: "Next-gen machine learning framework for predictive insights.",
-                longDesc: "NeuroEngine AI Core revolutionizes how you process big data. With out-of-the-box support for advanced neural networks and deep learning models, it accelerates your data science workflow. Perfect for rapid prototyping and enterprise scaling.",
-                price: "$499.00",
-                image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80",
-                badge: "Hot",
-                features: [
-                    "Auto-scaling ML pipelines",
-                    "Advanced natural language processing",
-                    "Real-time data visualization",
-                    "Enterprise-grade security"
-                ]
+                title: "ChatGPT Semi",
+                price: "PKR 1000",
+                orders: "350+",
+                image: "https://www.google.com/s2/favicons?domain=chatgpt.com&sz=128",
             },
             {
                 id: 2,
-                title: "PixelForge Studio X",
-                shortDesc: "The ultimate vector and raster graphic design suite.",
-                longDesc: "Push the boundaries of digital art with PixelForge Studio X. Offering seamless integration between vector tools and high-res raster brushes. Experience zero-lag performance even with thousands of layers.",
-                price: "$299.00",
-                image: "https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=800&q=80",
-                badge: "Bestseller",
-                features: [
-                    "Infinite canvas technology",
-                    "AI-assisted asset generation",
-                    "Cloud-synced workspaces",
-                    "One-click asset export"
-                ]
+                title: "ChatGPT Private",
+                price: "PKR 25000",
+                orders: "75+",
+                image: "https://www.google.com/s2/favicons?domain=chatgpt.com&sz=128",
             },
             {
                 id: 3,
-                title: "StreamNova Pro",
-                shortDesc: "Broadcast-quality video rendering and distribution platform.",
-                longDesc: "Take your content live with StreamNova Pro. Featuring ultra-low latency hardware encoding, multi-platform simulcasting, and dynamic overlays. Designed for professional creators and e-sport broadcasts.",
-                price: "$149.00/mo",
-                image: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=800&q=80",
-                badge: "Trending",
-                features: [
-                    "4K 60FPS streaming capabilities",
-                    "Multi-destination casting (Twitch, YT, etc.)",
-                    "Real-time analytics dashboard",
-                    "Automated VOD backups"
-                ]
+                title: "Capcut Private",
+                price: "PKR 5000",
+                orders: "500+",
+                image: "https://www.google.com/s2/favicons?domain=capcut.com&sz=128",
             },
             {
                 id: 4,
-                title: "CodeFlow Optimizer",
-                shortDesc: "AI-driven code analysis and automated refactoring tool.",
-                longDesc: "Eliminate technical debt instantly. CodeFlow continuously scans your repository to detect memory leaks, unoptimized loops, and anti-patterns, suggesting or automatically applying fixes via Pull Requests.",
-                price: "$89.00",
-                image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80",
-                badge: "Sale",
-                features: [
-                    "Supports 20+ programming languages",
-                    "Seamless CI/CD integration",
-                    "Automated vulnerability patching",
-                    "Custom rule definition engine"
-                ]
+                title: "Envato Elements",
+                price: "PKR 700",
+                orders: "750+",
+                image: "https://www.google.com/s2/favicons?domain=envato.com&sz=128",
+            },
+            {
+                id: 5,
+                title: "Netflix Premium",
+                price: "PKR 300",
+                orders: "1000+",
+                image: "https://www.google.com/s2/favicons?domain=netflix.com&sz=128",
             }
         ];
 
-        // --- 2. Render Product Cards ---
         const grid = document.getElementById('productGrid');
         
         products.forEach(product => {
             const card = document.createElement('div');
-            card.className = 'product-card';
-            card.onclick = () => openModal(product);
+            card.className = 'tt-product-card';
 
-            card.innerHTML = `
-                <div class="card-image-wrapper">
-                    <span class="badge-hot">${product.badge}</span>
-                    <img src="${product.image}" loading="lazy" alt="${product.title}">
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">${product.title}</h3>
-                    <p class="card-description">${product.shortDesc}</p>
-                    <div class="card-footer">
-                        <span class="card-price">${product.price}</span>
-                        <span class="card-action">View details &xrarr;</span>
+            const whatsappMessage = encodeURIComponent(\`Hi! I'm interested in \${product.title}\`);
+            const checkoutUrl = \`https://wa.me/923268600994?text=\${whatsappMessage}\`;
+
+            card.innerHTML = \`
+                <div class="tt-card-top">
+                    <div class="tt-card-icon">
+                        <img src="\${product.image}" loading="lazy" alt="\${product.title} logo">
+                    </div>
+                    <div class="tt-card-badges">
+                        <span class="tt-card-orders"><i class="fas fa-shopping-cart"></i> \${product.orders} Sold</span>
                     </div>
                 </div>
-            `;
+                <div class="tt-card-content">
+                    <h3 class="tt-card-title">\${product.title}</h3>
+                    <div class="tt-card-price-action">
+                        <span class="tt-card-price">\${product.price}</span>
+                        <div class="tt-buy-now-wrapper">
+                            <a href="\${checkoutUrl}" target="_blank" class="thm-btn thm-btn-two tt-btn-custom">Buy Now</a>
+                        </div>
+                    </div>
+                </div>
+            \`;
             grid.appendChild(card);
-        });
-
-        // --- 3. Modal Logic ---
-        const modal = document.getElementById('productModal');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalPrice = document.getElementById('modalPrice');
-        const modalDesc = document.getElementById('modalDesc');
-        const modalImg = document.getElementById('modalImg');
-        const modalFeatures = document.getElementById('modalFeatures');
-        
-        const closeBtn = document.getElementById('closeModal');
-        const cancelBtn = document.getElementById('cancelModal');
-
-        function openModal(data) {
-            // Populate Modal
-            modalTitle.textContent = data.title;
-            modalPrice.textContent = data.price;
-            modalDesc.textContent = data.longDesc;
-            modalImg.src = data.image;
-            modalImg.alt = data.title;
-            
-            // Populate features
-            modalFeatures.innerHTML = '';
-            data.features.forEach(feature => {
-                const li = document.createElement('li');
-                li.textContent = feature;
-                modalFeatures.appendChild(li);
-            });
-
-            // Prevent scrolling on body
-            document.body.style.overflow = 'hidden';
-            
-            // Show modal
-            modal.classList.add('active');
-        }
-
-        function closeModal() {
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        // Close Event Listeners
-        closeBtn.addEventListener('click', closeModal);
-        cancelBtn.addEventListener('click', closeModal);
-        
-        // Close on overlay click
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
-
-        // Close on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal.classList.contains('active')) {
-                closeModal();
-            }
         });
     </script>
 </body>
