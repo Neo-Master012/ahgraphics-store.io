@@ -645,7 +645,10 @@
 }
 
 .main-slider__img img {
+    height: clamp(350px, 70vh, 600px) !important;
     width: auto !important;
+    object-fit: contain;
+    object-position: bottom right;
 }
 
 .main-slider__img-shape-box {
@@ -1666,6 +1669,9 @@
     align-items: flex-end;
 }
 .main-slider__img-box--secondary img {
-    max-height: calc(100vh - 120px) !important;
-    padding-top: 80px;
+    height: clamp(350px, 70vh, 600px) !important;
+    width: auto !important;
+    object-fit: contain;
+    object-position: bottom right;
+
 }
