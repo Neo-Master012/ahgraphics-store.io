@@ -1,6 +1,13 @@
 (function ($) {
   "use strict";
 
+  // Clean URL: Remove index.html from address bar
+  if (window.location.pathname.indexOf('index.html') !== -1) {
+    var cleanUrl = window.location.href.replace(/index\.html/g, '');
+    window.history.replaceState(null, '', cleanUrl);
+  }
+  "use strict";
+
 
 
   var swiper = new Swiper(".swiper", {
