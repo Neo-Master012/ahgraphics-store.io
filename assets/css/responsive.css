@@ -2554,6 +2554,10 @@
         transform: none;
     }
 
+    .main-slider__img-box--secondary {
+        width: min(86vw, 360px);
+    }
+
     .active .main-slider__img-box {
         opacity: 1;
         transform: none;
@@ -2672,6 +2676,10 @@
         opacity: 1;
         filter: none;
         transform: translateX(-50%);
+    }
+
+    .main-slider__img-box--secondary {
+        width: min(76vw, 320px);
     }
 
     .active .main-slider__img-box {
