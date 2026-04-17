@@ -707,19 +707,21 @@
 
     function getLogoMarkup(product) {
       var domain = brandDomains[getBrandKey(product)] || "";
+      var safeLogoText = escapeHtml(product.logoText || "");
+      var safeTitle = escapeHtml(product.title || "Product");
 
       if (!domain) {
-        return '<span class="product__tool-logo-fallback">' + product.logoText + "</span>";
+        return '<span class="product__tool-logo-fallback">' + safeLogoText + "</span>";
       }
 
       return [
         '<img class="product__tool-logo-image" src="https://www.google.com/s2/favicons?domain=',
         domain,
         '&sz=128" alt="',
-        product.title,
+        safeTitle,
         ' logo" loading="lazy" onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'inline-flex\';">',
         '<span class="product__tool-logo-fallback" style="display:none;">',
-        product.logoText,
+        safeLogoText,
         "</span>"
       ].join("");
     }
@@ -732,9 +734,15 @@
       var soft = getCategorySoft(product.category);
       var displayTitle = getDisplayTitle(product);
       var primaryPoint = (product.features && product.features.length ? product.features[0] : detailText);
+      var safeBadgeText = escapeHtml((product.badge || "Premium") + " Access");
+      var safeDisplayTitle = escapeHtml(displayTitle);
+      var safePlan = escapeHtml(product.plan || "Premium plan");
+      var safePrice = escapeHtml(product.price || "Contact for price");
+      var safeProductKey = escapeHtml(productKey);
+      var safeBuyLabel = escapeHtml("Buy " + displayTitle + " now");
 
       var cardPoints = [primaryPoint].map(function (feature) {
-        return '<li class="product__feature-item">' + feature + "</li>";
+        return '<li class="product__feature-item">' + escapeHtml(feature) + "</li>";
       }).join("");
 
       return [
@@ -749,16 +757,16 @@
         "</div>",
         '<div class="product__all-content">',
         '<div class="product__title-wrap">',
-        '<span class="product__all-badge">' + product.badge + ' Access</span>',
-        '<h4 class="product__all-title"><a href="checkout.html">' + displayTitle + '</a></h4>',
+        '<span class="product__all-badge">' + safeBadgeText + "</span>",
+        '<h4 class="product__all-title"><a href="checkout.html" aria-label="' + safeBuyLabel + '">' + safeDisplayTitle + '</a></h4>',
         "</div>",
         '<ul class="product__feature-list">' + cardPoints + "</ul>",
         '<div class="product__all-footer">',
-        '<div class="product__price-box-wrap"><div class="product__price-box"><span class="product__price-label">' + product.plan + '</span><p class="product__all-price">' + product.price + "</p></div></div>",
+        '<div class="product__price-box-wrap"><div class="product__price-box"><span class="product__price-label">' + safePlan + '</span><p class="product__all-price">' + safePrice + "</p></div></div>",
         '<div class="product__all-actions product__card-actions">',
-        '<div class="product__all-btn-box product__all-btn-box--icon product__card-action-slot product__card-action-slot--icon"><button class="product__all-btn product__all-btn--icon product__all-btn--secondary product__card-action-btn product__card-action-btn--icon" type="button" data-product-key="' + productKey + '" data-product-action="add-to-cart" aria-label="Add to cart"><i class="fa fa-shopping-bag"></i></button></div>',
-        '<div class="product__all-btn-box product__card-action-slot product__card-action-slot--buy"><a class="thm-btn product__all-btn product__all-btn--buy product__card-action-btn product__card-action-btn--buy" href="checkout.html" data-product-key="' + productKey + '" data-product-action="buy-now">Buy Now</a></div>',
-        '<div class="product__all-btn-box product__all-btn-box--icon product__card-action-slot product__card-action-slot--icon"><button class="product__all-btn product__all-btn--icon product__card-action-btn product__card-action-btn--icon product__card-action-btn--wishlist' + (isWishlisted ? ' is-active' : '') + '" type="button" data-product-key="' + productKey + '" data-product-action="toggle-wishlist" aria-label="Add to wishlist"><i class="fa fa-heart"></i></button></div>',
+        '<div class="product__all-btn-box product__all-btn-box--icon product__card-action-slot product__card-action-slot--icon"><button class="product__all-btn product__all-btn--icon product__all-btn--secondary product__card-action-btn product__card-action-btn--icon" type="button" data-product-key="' + safeProductKey + '" data-product-action="add-to-cart" aria-label="Add to cart" title="Add to Cart"><i class="fa fa-shopping-bag"></i></button></div>',
+        '<div class="product__all-btn-box product__card-action-slot product__card-action-slot--buy"><a class="thm-btn product__all-btn product__all-btn--buy product__card-action-btn product__card-action-btn--buy" href="checkout.html" data-product-key="' + safeProductKey + '" data-product-action="buy-now" aria-label="' + safeBuyLabel + '">Buy Now</a></div>',
+        '<div class="product__all-btn-box product__all-btn-box--icon product__card-action-slot product__card-action-slot--icon"><button class="product__all-btn product__all-btn--icon product__card-action-btn product__card-action-btn--icon product__card-action-btn--wishlist' + (isWishlisted ? ' is-active' : '') + '" type="button" data-product-key="' + safeProductKey + '" data-product-action="toggle-wishlist" aria-label="' + (isWishlisted ? 'Remove from wishlist' : 'Add to wishlist') + '" aria-pressed="' + (isWishlisted ? "true" : "false") + '" title="' + (isWishlisted ? 'Remove from Wishlist' : 'Add to Wishlist') + '"><i class="fa fa-heart"></i></button></div>',
         "</div>",
         "</div>",
         "</div>",
@@ -835,7 +843,11 @@
         var isActive = toggleWishlistProduct(selectedProduct);
 
         event.preventDefault();
-        $(this).toggleClass("is-active", isActive);
+        $(this)
+          .toggleClass("is-active", isActive)
+          .attr("aria-pressed", String(isActive))
+          .attr("aria-label", isActive ? "Remove from wishlist" : "Add to wishlist")
+          .attr("title", isActive ? "Remove from Wishlist" : "Add to Wishlist");
         return;
       }
 

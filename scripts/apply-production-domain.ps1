@@ -106,7 +106,7 @@ foreach ($file in $htmlFiles) {
     for ($index = $matches.Count - 1; $index -ge 0; $index -= 1) {
         $match = $matches[$index]
         $rawJson = $match.Groups[1].Value
-        $jsonObject = $rawJson | ConvertFrom-Json -Depth 100
+        $jsonObject = $rawJson | ConvertFrom-Json
         $jsonObject = Convert-JsonUrls -Node $jsonObject
         $newJson = $jsonObject | ConvertTo-Json -Depth 100
         $replacement = "<script type=""application/ld+json"">`r`n$newJson`r`n    </script>"

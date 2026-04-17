@@ -1,5 +1,5 @@
 // --- Trending Tools Carousel Component Logic ---
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const products = [
         {
             id: 1,
@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", function() {
             price: "PKR 1000",
             orders: "350+",
             image: "https://www.google.com/s2/favicons?domain=chatgpt.com&sz=128",
+            badge: "AI Assistant",
+            note: "Best-selling shared access for prompt work, writing, and fast everyday output."
         },
         {
             id: 2,
@@ -14,13 +16,17 @@ document.addEventListener("DOMContentLoaded", function() {
             price: "PKR 25000",
             orders: "75+",
             image: "https://www.google.com/s2/favicons?domain=chatgpt.com&sz=128",
+            badge: "Private Tier",
+            note: "Dedicated premium access for teams or individuals who want the highest exclusivity."
         },
         {
             id: 3,
-            title: "Capcut Private",
+            title: "CapCut Private",
             price: "PKR 5000",
             orders: "500+",
             image: "https://www.google.com/s2/favicons?domain=capcut.com&sz=128",
+            badge: "Editing Pro",
+            note: "Fast-moving creator plan for premium edits, polished reels, and stronger visual delivery."
         },
         {
             id: 4,
@@ -28,6 +34,8 @@ document.addEventListener("DOMContentLoaded", function() {
             price: "PKR 700",
             orders: "750+",
             image: "https://www.google.com/s2/favicons?domain=envato.com&sz=128",
+            badge: "Creative Assets",
+            note: "Popular design library access for templates, graphics, and high-speed creative production."
         },
         {
             id: 5,
@@ -35,67 +43,91 @@ document.addEventListener("DOMContentLoaded", function() {
             price: "PKR 300",
             orders: "1000+",
             image: "https://www.google.com/s2/favicons?domain=netflix.com&sz=128",
+            badge: "Streaming Pick",
+            note: "One of the most frequently ordered entertainment plans with strong everyday value."
         }
     ];
 
-    const grid = document.getElementById('ttProductGrid');
-    if (!grid) return;
+    const grid = document.getElementById("ttProductGrid");
+    const container = document.querySelector(".tt-swiper-container");
+    const heading = document.querySelector(".showcase-section .section-header h2");
 
-    // Render Cards in Swiper Wrapper
-    products.forEach(product => {
-        const card = document.createElement('div');
-        card.className = 'tt-card-inner swiper-slide'; // Treat inner container directly as the slide 
+    if (heading) {
+        heading.textContent = "Trending Tools";
+    }
 
-        const whatsappMessage = encodeURIComponent(`Hi! I'm interested in ${product.title}`);
-        const checkoutUrl = `https://wa.me/923268600994?text=${whatsappMessage}`;
+    if (!grid || !container) {
+        return;
+    }
 
-        card.innerHTML = `
-            <div class="tt-card-top">
-                <div class="tt-card-icon">
-                    <img src="${product.image}" loading="lazy" alt="${product.title} logo">
-                </div>
-                <div class="tt-card-badges">
-                    <span class="tt-card-orders"><i class="fas fa-shopping-cart"></i> ${product.orders} Sold</span>
-                </div>
-            </div>
-            <div class="tt-card-content">
-                <h3 class="tt-card-title">${product.title}</h3>
-                <div class="tt-card-price-action">
-                    <span class="tt-card-price">${product.price}</span>
-                    <a href="${checkoutUrl}" target="_blank" class="tt-card-btn thm-btn thm-btn-two">Buy Now</a>
-                </div>
-            </div>
-        `;
-        grid.appendChild(card);
+    function escapeHtml(value) {
+        return String(value || "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#39;");
+    }
+
+    products.forEach(function (product) {
+        const slide = document.createElement("div");
+        const whatsappMessage = encodeURIComponent("Hi! I'm interested in " + product.title);
+        const checkoutUrl = "https://wa.me/923268600994?text=" + whatsappMessage;
+
+        slide.className = "swiper-slide";
+        slide.innerHTML = [
+            '<article class="tt-card">',
+            '<div class="tt-card__shell">',
+            '<span class="tt-card__beam"></span>',
+            '<div class="tt-card__meta">',
+            '<span class="tt-card__badge">' + escapeHtml(product.badge) + "</span>",
+            '<span class="tt-card__orders">' + escapeHtml(product.orders) + ' sold</span>',
+            "</div>",
+            '<div class="tt-card__logo-wrap">',
+            '<div class="tt-card__logo-ring">',
+            '<div class="tt-card__logo-core">',
+            '<img class="tt-card__logo-image" src="' + escapeHtml(product.image) + '" loading="lazy" alt="' + escapeHtml(product.title) + ' logo">',
+            "</div>",
+            "</div>",
+            "</div>",
+            '<div class="tt-card__body">',
+            '<h3 class="tt-card__title"><a href="' + checkoutUrl + '" target="_blank" rel="noopener noreferrer">' + escapeHtml(product.title) + "</a></h3>",
+            '<p class="tt-card__note">' + escapeHtml(product.note) + "</p>",
+            '<div class="tt-card__price-panel">',
+            '<span class="tt-card__price-label">Current offer</span>',
+            '<strong class="tt-card__price">' + escapeHtml(product.price) + "</strong>",
+            "</div>",
+            '<div class="tt-card__actions">',
+            '<a class="tt-card__button" href="' + checkoutUrl + '" target="_blank" rel="noopener noreferrer">Buy Now</a>',
+            '<a class="tt-card__ghost" href="' + checkoutUrl + '" target="_blank" rel="noopener noreferrer" aria-label="Chat about ' + escapeHtml(product.title) + ' on WhatsApp"><i class="fab fa-whatsapp"></i></a>',
+            "</div>",
+            "</div>",
+            "</div>",
+            "</article>"
+        ].join("");
+
+        grid.appendChild(slide);
     });
 
-    // Initialize Swiper Carousel
-    if (typeof Swiper !== 'undefined') {
+    if (typeof Swiper !== "undefined") {
         new Swiper(".tt-swiper-container", {
             slidesPerView: 1,
-            spaceBetween: 20,
+            spaceBetween: 22,
             loop: true,
+            speed: 700,
             autoplay: {
-                delay: 2800,
-                disableOnInteraction: false,
+                delay: 3200,
+                disableOnInteraction: false
             },
             pagination: {
                 el: ".tt-swiper-pagination",
-                clickable: true,
+                clickable: true
             },
             breakpoints: {
-                480: {
-                    slidesPerView: 2,
-                },
-                768: {
-                    slidesPerView: 3,
-                },
-                992: {
-                    slidesPerView: 4,
-                },
-                1200: {
-                    slidesPerView: 5,
-                }
+                480: { slidesPerView: 1.15 },
+                768: { slidesPerView: 2.15 },
+                992: { slidesPerView: 3 },
+                1280: { slidesPerView: 4 }
             }
         });
     }

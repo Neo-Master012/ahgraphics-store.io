@@ -608,10 +608,21 @@
     display: block;
 }
 
+.footer-widget-two__about-text {
+    position: relative;
+    display: block;
+    margin-top: 24px;
+    margin-bottom: 0;
+    max-width: 290px;
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.78);
+}
+
 .footer-widget-two__get-in-touch-list {
     position: relative;
     display: block;
-    margin-top: 42px;
+    margin-top: 28px;
     margin-bottom: 45px;
 }
 

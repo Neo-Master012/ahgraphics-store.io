@@ -1,191 +1,496 @@
 /* ==========================================================================
-   Showcase / Trending Tools Section (Redesigned)
+   Trending Tools Premium Carousel
    ========================================================================== */
 
 .showcase-section {
-    padding: 80px 0;
-    max-width: 1200px;
+    position: relative;
+    padding: 36px 0 54px;
+}
+
+.showcase-section__frame {
+    position: relative;
+    max-width: 1260px;
     margin: 0 auto;
-    position: relative;
-    overflow: visible;
-}
-
-.showcase-section .section-header {
-    text-align: center;
-    margin-bottom: 50px;
-    padding: 0 20px;
-}
-
-.showcase-section .section-header h2 {
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: var(--finris-black, #061C3D);
-    display: inline-block;
-    position: relative;
-    margin-bottom: 12px;
-}
-
-.showcase-section .section-header p {
-    color: #666;
-    font-size: 1.1rem;
-}
-
-/* Container */
-.tt-swiper-container {
-    padding: 20px !important;
-    overflow: visible !important;
-    clip-path: inset(-50px -50px -100px -50px); /* allow shadow bleeding */
-}
-
-/* Distinctive Premium Card Design */
-.tt-product-card {
-    height: auto;
-}
-
-.tt-card-inner {
-    background: linear-gradient(145deg, #1f1f23 0%, #151518 100%);
-    border-radius: 16px;
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    position: relative;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    padding: 34px 26px 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 34px;
+    background:
+        radial-gradient(circle at top left, rgba(255, 53, 53, 0.16) 0%, rgba(255, 53, 53, 0) 30%),
+        radial-gradient(circle at bottom right, rgba(24, 161, 255, 0.14) 0%, rgba(24, 161, 255, 0) 26%),
+        linear-gradient(145deg, #070707 0%, #101014 54%, #050505 100%);
+    box-shadow: 0 36px 70px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.06);
     overflow: hidden;
 }
 
-/* Neon glow effect on hover */
-.tt-card-inner::before {
-    content: '';
+.showcase-section__frame::before {
+    content: "";
     position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, var(--finris-primary, #FF3838), transparent 40%, transparent 60%, var(--finris-primary, #FF3838));
-    z-index: -1;
-    border-radius: 18px;
-    opacity: 0;
-    transition: opacity 0.4s ease;
+    inset: 0;
+    background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0) 24%),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0, rgba(255, 255, 255, 0.04) 1px, transparent 1px, transparent 36px);
+    opacity: 0.6;
+    pointer-events: none;
 }
 
-.tt-product-card:hover .tt-card-inner {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(var(--finris-primary-rgb, 255, 56, 56), 0.2);
+.showcase-section .section-header {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 12px;
+    max-width: 760px;
+    margin: 0 0 24px;
+    padding: 0 6px;
+    text-align: left;
 }
 
-.tt-product-card:hover .tt-card-inner::before {
-    opacity: 1;
+.showcase-section__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    min-height: 36px;
+    padding: 0 15px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    line-height: 1;
+    text-transform: uppercase;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-/* Top Section: Icon & Orders Badge */
-.tt-card-top {
+.showcase-section .section-header h2 {
+    margin: 0;
+    color: #ffffff;
+    font-size: clamp(2.2rem, 5vw, 4.2rem);
+    font-weight: 800;
+    line-height: 0.94;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+}
+
+.showcase-section .section-header p {
+    margin: 0;
+    max-width: 650px;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+.tt-swiper-container {
+    position: relative;
+    z-index: 1;
+    padding: 10px 4px 42px !important;
+    overflow: visible !important;
+}
+
+.tt-card {
+    height: 100%;
+}
+
+.tt-card__shell {
+    position: relative;
     display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 428px;
+    padding: 24px 22px 22px;
+    border: 1px solid transparent;
+    border-radius: 30px;
+    background:
+        linear-gradient(180deg, #050505 0%, #050505 100%) padding-box,
+        linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 45, 45, 0.92) 22%, rgba(255, 255, 255, 0.12) 48%, rgba(84, 0, 0, 0.96) 72%, rgba(255, 255, 255, 0.72) 100%) border-box;
+    box-shadow: 0 26px 52px rgba(0, 0, 0, 0.44), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    overflow: hidden;
+    transition: transform 320ms cubic-bezier(0.2, 0.68, 0.24, 1), box-shadow 320ms ease, border-color 320ms ease;
+}
+
+.tt-card__shell::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: 29px;
+    background:
+        radial-gradient(circle at top center, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.02) 22%, rgba(255, 255, 255, 0) 42%),
+        radial-gradient(circle at bottom right, rgba(255, 47, 47, 0.1) 0%, rgba(255, 47, 47, 0) 44%);
+    pointer-events: none;
+}
+
+.tt-card__shell::after {
+    content: "";
+    position: absolute;
+    top: -16%;
+    bottom: -16%;
+    left: -26%;
+    width: 28%;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.5) 50%, transparent 100%);
+    opacity: 0;
+    transform: translateX(-260%) skewX(-18deg);
+    transition: transform 720ms ease, opacity 280ms ease;
+    pointer-events: none;
+}
+
+.tt-card:hover .tt-card__shell {
+    transform: translateY(-10px);
+    box-shadow: 0 34px 68px rgba(0, 0, 0, 0.54), 0 0 28px rgba(255, 47, 47, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.tt-card:hover .tt-card__shell::after {
+    opacity: 0.82;
+    transform: translateX(560%) skewX(-18deg);
+}
+
+.tt-card__beam {
+    position: absolute;
+    top: 18px;
+    left: 22px;
+    right: 22px;
+    height: 3px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.18) 0%, #ff2f2f 48%, rgba(255, 255, 255, 0.5) 100%);
+    box-shadow: 0 0 18px rgba(255, 47, 47, 0.34);
+}
+
+.tt-card__meta,
+.tt-card__body {
+    position: relative;
+    z-index: 1;
+}
+
+.tt-card__meta {
+    display: flex;
+    align-items: center;
     justify-content: space-between;
-    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 28px;
+}
+
+.tt-card__badge,
+.tt-card__orders {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 0 14px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.tt-card__badge {
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+}
+
+.tt-card__orders {
+    border: 1px solid rgba(255, 47, 47, 0.26);
+    background: rgba(255, 47, 47, 0.12);
+    color: #ffb0b0;
+}
+
+.tt-card__logo-wrap {
+    display: flex;
+    justify-content: center;
     margin-bottom: 24px;
 }
 
-.tt-card-icon {
-    width: 60px;
-    height: 60px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    padding: 12px;
+.tt-card__logo-ring {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: inset 0 2px 10px rgba(255,255,255,0.03);
+    width: 118px;
+    height: 118px;
+    padding: 10px;
+    border-radius: 50%;
+    border: 2px solid #ff2f2f;
+    background: linear-gradient(180deg, #090909 0%, #000000 100%);
+    box-shadow: 0 0 0 8px rgba(255, 47, 47, 0.08), 0 18px 36px rgba(0, 0, 0, 0.42), 0 0 22px rgba(255, 47, 47, 0.24);
+    transition: transform 260ms ease, border-color 260ms ease, box-shadow 260ms ease;
 }
 
-.tt-card-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+.tt-card:hover .tt-card__logo-ring {
+    transform: scale(1.04);
+    border-color: #ffffff;
+    box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.08), 0 22px 40px rgba(0, 0, 0, 0.46), 0 0 24px rgba(255, 255, 255, 0.2);
 }
 
-.tt-card-orders {
-    background: rgba(var(--finris-primary-rgb, 255, 56, 56), 0.15);
-    color: var(--finris-primary, #FF3838);
-    font-size: 0.8rem;
-    font-weight: 600;
-    padding: 6px 12px;
-    border-radius: 20px;
+.tt-card__logo-core {
     display: flex;
     align-items: center;
-    gap: 6px;
-    border: 1px solid rgba(var(--finris-primary-rgb, 255, 56, 56), 0.3);
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #000000;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
-/* Content */
-.tt-card-content {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+.tt-card__logo-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.4));
 }
 
-.tt-card-title {
-    font-size: 1.25rem;
-    color: #fff;
-    margin: 0 0 16px 0;
-    font-weight: 700;
-    line-height: 1.3;
-}
-
-.tt-card-price-action {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+.tt-card__body {
+    display: grid;
+    gap: 16px;
     margin-top: auto;
 }
 
-.tt-card-price {
-    font-size: 1.4rem;
+.tt-card__title {
+    margin: 0;
+}
+
+.tt-card__title a {
+    color: #ffffff;
+    font-size: 1.55rem;
     font-weight: 800;
-    color: #fff;
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+    text-decoration: none;
+    transition: color 220ms ease;
 }
 
-/* Buy Action */
-.tt-card-btn {
-    width: 100%;
-    text-align: center;
-    padding: 10px 20px;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    transition: all 0.3s ease;
-    background-color: var(--finris-primary, #FF3838);
-    color: white;
-    border: none;
+.tt-card__title a:hover {
+    color: #ffe2e2;
+}
+
+.tt-card__note {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.97rem;
+    line-height: 1.72;
+}
+
+.tt-card__price-panel {
+    display: grid;
+    gap: 8px;
+    padding: 16px 18px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 22px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 14px 24px rgba(0, 0, 0, 0.18);
+}
+
+.tt-card__price-label {
+    color: rgba(255, 255, 255, 0.64);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    line-height: 1;
     text-transform: uppercase;
-    display: block; /* anchor link compatibility */
 }
 
-.tt-card-btn:hover {
-    background-color: var(--finris-black, #061C3D);
-    color: white !important;
+.tt-card__price {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.05em;
 }
 
-/* Swiper Pagination */
+.tt-card__actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 54px;
+    gap: 12px;
+    align-items: center;
+}
+
+.tt-card__button,
+.tt-card__ghost {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    border-radius: 18px;
+    text-decoration: none;
+    overflow: hidden;
+    transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease, color 220ms ease, border-color 220ms ease;
+}
+
+.tt-card__button::before,
+.tt-card__ghost::before {
+    content: "";
+    position: absolute;
+    top: -24%;
+    bottom: -24%;
+    left: -30%;
+    width: 30%;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.7) 50%, transparent 100%);
+    opacity: 0;
+    transform: translateX(-240%) skewX(-18deg);
+    transition: transform 620ms ease, opacity 260ms ease;
+    pointer-events: none;
+}
+
+.tt-card__button:hover::before,
+.tt-card__ghost:hover::before {
+    opacity: 0.78;
+    transform: translateX(520%) skewX(-18deg);
+}
+
+.tt-card__button {
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: linear-gradient(135deg, #00c853 0%, #04863a 100%);
+    box-shadow: 0 0 0 1px rgba(0, 200, 83, 0.2), 0 18px 34px rgba(4, 134, 58, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    font-size: 0.84rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.tt-card__button:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(180deg, #ffffff 0%, #ededed 100%);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.28), 0 0 18px rgba(255, 255, 255, 0.18), 0 20px 38px rgba(0, 0, 0, 0.5);
+    color: #056a2f;
+}
+
+.tt-card__ghost {
+    border: 1px solid rgba(255, 255, 255, 0.92);
+    background: linear-gradient(180deg, #ffffff 0%, #ececec 100%);
+    box-shadow: 0 16px 28px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.96);
+    color: #0d8b41;
+    font-size: 1.12rem;
+}
+
+.tt-card__ghost:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255, 255, 255, 0.95);
+    background: linear-gradient(135deg, #ff2f2f 0%, #8b0202 100%);
+    box-shadow: 0 0 0 1px rgba(255, 47, 47, 0.22), 0 18px 36px rgba(139, 2, 2, 0.32), 0 0 28px rgba(255, 47, 47, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+}
+
 .tt-swiper-pagination {
     position: relative !important;
-    margin-top: 35px;
+    margin-top: 24px;
 }
 
 .tt-swiper-pagination .swiper-pagination-bullet {
-    background: var(--finris-primary, #FF3838);
-    opacity: 0.2;
-    transition: all 0.3s;
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.22);
+    opacity: 1;
+    transition: all 220ms ease;
 }
 
 .tt-swiper-pagination .swiper-pagination-bullet-active {
-    opacity: 1;
-    width: 24px;
-    border-radius: 10px;
+    width: 30px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #ff4d4d 0%, #ffffff 100%);
+    box-shadow: 0 0 16px rgba(255, 77, 77, 0.34);
+}
+
+@media only screen and (max-width: 991px) {
+    .showcase-section {
+        padding: 28px 0 46px;
+    }
+
+    .showcase-section__frame {
+        padding: 28px 18px 24px;
+        border-radius: 28px;
+    }
+
+    .tt-card__shell {
+        min-height: 404px;
+        padding: 22px 18px 20px;
+    }
+
+    .tt-card__price {
+        font-size: 1.8rem;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .showcase-section .section-header {
+        gap: 10px;
+        margin-bottom: 20px;
+        padding: 0 2px;
+    }
+
+    .showcase-section .section-header p {
+        font-size: 0.98rem;
+        line-height: 1.7;
+    }
+
+    .tt-card__shell {
+        min-height: 388px;
+    }
+
+    .tt-card__meta {
+        flex-wrap: wrap;
+        margin-bottom: 22px;
+    }
+
+    .tt-card__logo-ring {
+        width: 108px;
+        height: 108px;
+    }
+
+    .tt-card__title a {
+        font-size: 1.4rem;
+    }
+}
+
+@media only screen and (max-width: 479px) {
+    .showcase-section__frame {
+        padding: 24px 14px 22px;
+        border-radius: 24px;
+    }
+
+    .tt-card__shell {
+        min-height: 376px;
+        padding: 20px 16px 18px;
+        border-radius: 26px;
+    }
+
+    .tt-card__price-panel {
+        padding: 14px 16px 16px;
+    }
+
+    .tt-card__price {
+        font-size: 1.68rem;
+    }
+
+    .tt-card__actions {
+        grid-template-columns: minmax(0, 1fr) 50px;
+        gap: 10px;
+    }
+
+    .tt-card__button,
+    .tt-card__ghost {
+        min-height: 50px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tt-card__shell,
+    .tt-card__shell::after,
+    .tt-card__logo-ring,
+    .tt-card__button,
+    .tt-card__ghost,
+    .tt-card__button::before,
+    .tt-card__ghost::before {
+        transition: none !important;
+        animation: none !important;
+    }
+
+    .tt-card:hover .tt-card__shell,
+    .tt-card:hover .tt-card__logo-ring,
+    .tt-card__button:hover,
+    .tt-card__ghost:hover {
+        transform: none !important;
+    }
 }
