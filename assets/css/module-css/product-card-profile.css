@@ -76,21 +76,21 @@ Dedicated card design system for products.html
     top: 0; left: 50%; width: 118px; height: 118px;
     border-radius: 50%;
     transform: translateX(-50%);
-    background: transparent;
-    border: 2px solid rgba(255,255,255,0.1);
-    box-shadow: 0 0 20px var(--product-accent, #000);
-    transition: transform 220ms ease;
+    background: #000;
+    border: 2px solid red;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+    transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
 }
 
 .product__card-top:hover .product__card-halo {
     position: absolute;
     top: 0; left: 50%; width: 118px; height: 118px;
     border-radius: 50%;
-    transform: translateX(-50%);
-    background: transparent;
-    border: 2px solid rgba(255,255,255,0.1);
-    box-shadow: 0 0 20px var(--product-accent, #000);
-    transition: transform 220ms ease;
+    transform: translateX(-50%) scale(1.03);
+    background: #000;
+    border: 2px solid white;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.9), inset 0 0 10px rgba(255, 255, 255, 0.4);
+    transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
 }
 
 .product__brand-head {
@@ -134,7 +134,7 @@ Dedicated card design system for products.html
     display: block;
     object-fit: cover;
     border-radius: 50%;
-    background: #fff;
+    background: transparent;
     transition: transform 220ms ease, filter 220ms ease;
 }
 
@@ -144,7 +144,8 @@ Dedicated card design system for products.html
     display: block;
     object-fit: cover;
     border-radius: 50%;
-    background: #fff;
+    background: transparent;
+    transform: scale(1.05);
     transition: transform 220ms ease, filter 220ms ease;
 }
 
@@ -178,7 +179,7 @@ Dedicated card design system for products.html
     justify-content: center;
     margin-bottom: 10px;
     padding: 0;
-    color: #a1a1aa;
+    color: #ffffff;
     font-size: 10px;
     font-weight: 700;
     line-height: 1;
@@ -210,17 +211,18 @@ Dedicated card design system for products.html
     border-radius: 20px;
     color: #fff;
     text-decoration: none;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: none;
-    transition: background 220ms ease, transform 220ms ease, border-color 220ms ease;
+    background: red;
+    border: 1px solid red;
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+    transition: background 220ms ease, transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, color 220ms ease;
 }
 
 .product__all-title a:hover {
-    color: #ffffff;
-    background: var(--product-accent, #FF3838);
-    border-color: transparent;
+    color: #000000;
+    background: #ffffff;
+    border-color: #ffffff;
     transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.9), inset 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .product__feature-list {
@@ -241,7 +243,7 @@ Dedicated card design system for products.html
     max-width: 260px;
     min-height: 52px;
     padding: 12px 18px 12px 52px;
-    color: #cbd5e1;
+    color: #ffffff;
     font-size: 14px;
     font-weight: 500;
     line-height: 1.45;
@@ -385,10 +387,10 @@ Dedicated card design system for products.html
     min-height: 44px !important;
     padding: 0 !important;
     border-radius: 14px !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    background: rgba(255, 255, 255, 0.05) !important;
-    color: #fff !important;
-    box-shadow: none !important;
+    border: 1px solid #ffffff !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2) !important;
 }
 
 .product__card-action-btn--icon i {
@@ -398,10 +400,10 @@ Dedicated card design system for products.html
 
 .product__card-action-btn--icon:hover {
     color: #ffffff !important;
-    background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%) !important;
-    border-color: transparent !important;
+    background: red !important;
+    border-color: red !important;
     transform: translateY(-2px) !important;
-    box-shadow: 0 14px 22px rgba(124, 58, 237, 0.18) !important;
+    box-shadow: 0 10px 25px rgba(255, 0, 0, 0.9), inset 0 0 10px rgba(255, 0, 0, 0.5) !important;
 }
 
 .product__card-action-btn--icon.is-added {
@@ -420,18 +422,18 @@ Dedicated card design system for products.html
 .product__card-action-btn--buy {
     min-height: 46px !important;
     border-radius: 16px !important;
-    border: 1px solid #111827 !important;
-    background: linear-gradient(135deg, #111827 0%, #2b2b2b 100%) !important;
+    border: 1px solid #10b981 !important;
+    background: #10b981 !important;
     color: #ffffff !important;
-    box-shadow: 0 14px 24px rgba(17, 17, 17, 0.16) !important;
+    box-shadow: 0 10px 20px rgba(16, 185, 129, 0.4) !important;
 }
 
 .product__card-action-btn--buy:hover {
-    color: #ffffff !important;
-    background: linear-gradient(135deg, #e27a2f 0%, #f0b14a 100%) !important;
-    border-color: transparent !important;
+    color: #10b981 !important;
+    background: #ffffff !important;
+    border-color: #ffffff !important;
     transform: translateY(-2px) !important;
-    box-shadow: 0 16px 28px rgba(226, 122, 47, 0.22) !important;
+    box-shadow: 0 12px 28px rgba(255, 255, 255, 0.9), inset 0 0 10px rgba(255, 255, 255, 0.6) !important;
 }
 
 @media only screen and (max-width: 1199px) {
@@ -462,7 +464,7 @@ Dedicated card design system for products.html
     max-width: 260px;
     min-height: 52px;
     padding: 12px 18px 12px 52px;
-    color: #cbd5e1;
+    color: #ffffff;
     font-size: 14px;
     font-weight: 500;
     line-height: 1.45;
@@ -518,10 +520,10 @@ Dedicated card design system for products.html
     top: 0; left: 50%; width: 118px; height: 118px;
     border-radius: 50%;
     transform: translateX(-50%);
-    background: transparent;
-    border: 2px solid rgba(255,255,255,0.1);
-    box-shadow: 0 0 20px var(--product-accent, #000);
-    transition: transform 220ms ease;
+    background: #000;
+    border: 2px solid red;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+    transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
 }
 
     .product__brand-head {
@@ -535,7 +537,7 @@ Dedicated card design system for products.html
     display: block;
     object-fit: cover;
     border-radius: 50%;
-    background: #fff;
+    background: transparent;
     transition: transform 220ms ease, filter 220ms ease;
 }
 
@@ -560,10 +562,10 @@ Dedicated card design system for products.html
     border-radius: 20px;
     color: #fff;
     text-decoration: none;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: none;
-    transition: background 220ms ease, transform 220ms ease, border-color 220ms ease;
+    background: red;
+    border: 1px solid red;
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+    transition: background 220ms ease, transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, color 220ms ease;
 }
 
     .product__feature-item {
@@ -575,7 +577,7 @@ Dedicated card design system for products.html
     max-width: 260px;
     min-height: 52px;
     padding: 12px 18px 12px 52px;
-    color: #cbd5e1;
+    color: #ffffff;
     font-size: 14px;
     font-weight: 500;
     line-height: 1.45;
